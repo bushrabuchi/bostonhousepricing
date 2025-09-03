@@ -1,11 +1,12 @@
 import json
 import pickle
-
+import os
 from flask import Flask,request,app,jsonify,url_for,render_template
 import numpy as np
 import pandas as pd
 
 app=Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY", "fallback-key") 
 ## Load the model
 regmodel=pickle.load(open('regmodel.pkl','rb'))
 scalar=pickle.load(open('scaling.pkl','rb'))
